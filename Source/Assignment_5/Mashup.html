@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>Mash Application </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div  ng-app="myApp" ng-controller="View1Ctrl">
+    <h1>{{ myWelcome }}</h1>
+    </div>
+
+</body>
+</html>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('View1Ctrl', function($scope, $http) {
+        $http.get("https://en.wikipedia.org/w/api.php?format=json&mozSystem=true&action=query&prop=extracts&exintro=&explaintext=&titles=matrix")
+                .then(function(response) {
+                    $scope.myWelcome = response.data;
+                });
+    });
+</script>

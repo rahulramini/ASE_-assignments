@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="css/agency.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/basestyle.css">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Style for Button -->
+    <style>
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        function validation(){
+            var inputusername=document.getElementById("tvusername").value;
+            var inputpassword=document.getElementById("tvpassword").value;
+            if(inputpassword==localStorage.getItem("rtvpassword") && inputusername==localStorage.getItem("rtvusername")){
+            location.href='Home.html';}
+        }
+    </script>
+</head>
+
+
+<body style="background-color: black">
+    <header>
+        <h1>Welcome to Login Page</h1><br><br><br>
+        <h2>Please Enter your Credentials</h2>
+    </header>
+
+    <form style="text-align: center" >
+        Username: <input type="text" name="username" id="tvusername"><br><br>
+        Password: &nbsp<input type="password" name="password" id="tvpassword"><br><br>
+        <input type="button" name="login" id="btlogin" value="Login" class="button" onclick="validation()">
+        <input type="button" name="register" id="btregister" value="Register" class="button" onclick="location.href='Register.html'">
+    </form>
+</body>
+</html>

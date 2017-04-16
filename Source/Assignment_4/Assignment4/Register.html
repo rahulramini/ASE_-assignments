@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="css/agency.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/basestyle.css">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <style>
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="js/ngstorage.min.js"></script>
+   <!-- <script>
+        var regapp = angular.module("Regapp",["ngStorage"]);
+        regapp.controller("Regcontroller",function($scope, $localStorage)){
+
+            $scope.save=function(){
+                $localStorage.
+            }
+        }
+    </script>-->
+    <script>function save() {
+    var inputFirstname = document.getElementById("firstname");
+    var inputLastname = document.getElementById("lastname");
+    var inputUsername= document.getElementById("username");
+    var inputPassword= document.getElementById("password");
+    localStorage.setItem("rtvfirstname", inputFirstname.value);
+    localStorage.setItem("rtvlastname", inputLastname.value);
+    localStorage.setItem("rtvusername", inputUsername.value);
+    localStorage.setItem("rtvpassword", inputPassword.value);
+    }</script>
+
+</head>
+<body data-ng-app="Regapp">
+<header>
+    <h1>Welcome to Sign Up Page</h1><br><br><br>
+    <h2>Please Enter your Details to Register your account</h2>
+</header>
+
+<div data-ng-controller="Regcontroller">
+<form style="text-align: center" >
+    First Name: <input type="text" name="firstname" id="firstname" placeholder="Enter your First name"><br><br>
+    Last Name: <input type="text" name="lastname" id="lastname" placeholder="Enter your Last name"><br><br>
+    Username: <input type="text" name="username" id="username" placeholder="Create a Username"><br><br>
+    Password: &nbsp<input type="password" name="password" id="password" placeholder="Choose a password"><br><br>
+    <input type="button" name="register" id="register" value="Register" class="button" onclick="save()">
+</form></div>
+</body>
+</html>

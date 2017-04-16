@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="deleteacc">
+<head>
+    <title>Account DeActivation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="css/agency.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/basestyle.css">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Style for Button -->
+    <style>
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="js/ngstorage.min.js"></script>
+</head>
+<body ng-controller="deleteController">
+<header>
+    <h1>Welcome to Deactivation Page</h1><br><br><br>
+    <h2>Please enter your Credentials</h2>
+</header>
+
+    <form style="text-align: center" >
+    Confirm Password: <input type="text" name="CPass" id="Cpass" ng-model="cpassw" ><br><br>
+        <input type="button" name="btdelete" id="btdelete" value="DeActivate Account" class="button" ng-click="deleteAccount(pass)">
+        </form>
+
+</body>
+</html>
+
+<script>
+    var deleteacc= angular.module("deleteAccount",[]);
+
+    deleteacc.controller("deleteController", function($scope,$http, $httpParamSerializerJQLike){
+
+        $scope.deleteAccount = function(pass) {
+            console.log("inside login function");
+            $http({
+                method: 'DELETE',
+                url: 'https://api.mongolab.com/api/1/databases/assignment7/collections/myfirstcollection/?apiKey=DTVULw3NbvMColXgt3FsGoz7qeADhBJV',
+                data: JSON.stringify({
+                    password: pass
+                }).success(function () {
+                    $window.location = 'MongoSignIn.html';
+
+                    $scope.msg = "Your Account is Deactivated!! We are already Missing you!!!";
+                })
+            });
+
+
+    }
+
+
+</script>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7">
+<head>
+    <meta charset="UTF-8">
+    <title>mash test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+</head>
+<body ng-controller="View1Ctrl">
+<h1 style="color: red">Enter a movie name and Find its review</h1>
+<input type="text" ng-model="searchtext" id="search" placeholder="Enter Movie name">
+<button ng-click="searchmovie(searchtext)">Search</button>
+
+<ul style="font-size: x-large">
+    <!--    {{movieList}} -->
+
+   <li ng-repeat="movies in movieList">
+         <a href="" ng-click="getReviews(movies)">{{ movies.name }}</a>
+     </li>
+ </ul>
+<br>
+<br>
+<div >
+    <p ng-model="ReviewWithSentiment">
+    <h1 style="color: red">Review</h1>
+<h2 style="align-content: center ; ;color: green"><b style="color: black">Review:</b>{{ ReviewWithSentiment.sentiment }}</h2>
+<h2 style="align-content: center ;color: green"><b style="color: black">Score:</b>{{ ReviewWithSentiment.score }}</h2>
+    </p>
+</div>
+
+
+ </body>
+ </html>
+
+ <script>
+     var app = angular.module('myApp', []);
+     app.controller('View1Ctrl', function($scope, $http) {
+         $scope.movieList = new Array();
+
+         $scope.searchmovie=function(search) {
+             $http.get("http://bechdeltest.com/api/v1/getMoviesByTitle?title=" + search)
+                     .then(function (response) {
+
+                         <!--  $scope.movieList=response.data[0].title; -->
+
+                        for(var i=0; i<response.data.length; i++ ){
+                            $scope.movieList[i] = {"name":response.data[i].title};
+                        }
+
+                    });
+        }
+
+
+         $scope.getReviews = function (movieSelected) {
+             var callback = $http.get("http://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment" +
+                     "?apikey=99a61f1bcbf251c1a543deae80d71f875633b9d2" +
+                     "&outputMode=json&text=" + movieSelected.id);
+             callback.success(function (data) {
+                 $scope.ReviewWithSentiment = {
+                     "sentiment": data.docSentiment.type,
+                     "score": data.docSentiment.score
+                 };
+
+             })
+         }
+
+    });
+</script>
+
